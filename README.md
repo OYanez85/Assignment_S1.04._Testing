@@ -12,9 +12,6 @@ The project is divided into the following levels and exercises:
 
 Assignment_S1.04._Testing/ │ ├── Level_1-JUnit/ │ ├── Exercise_1/ │ ├── Exercise_2/ │ ├── Exercise_3/ │ ├── Level_2-AssertJ/ │ ├── Exercise_1/ │ ├── Exercise_2/ │ └── Level_3-JUnit/ ├── Exercise_1/
 
-bash
-Copy code
-
 Each exercise contains Java source code files and JUnit test files that are executed using Maven.
 
 ## Debian Commands Used
@@ -26,8 +23,7 @@ chmod +x create_pom_files.sh
 This command was used to make the shell script executable, which automatically creates pom.xml files in all the necessary directories.
 
 2. Run the create_pom_files.sh Script
-bash
-Copy code
+
 ./create_pom_files.sh
 This script generates the pom.xml files required for Maven to run in each exercise directory. Below is a summary of the shell script:
 
@@ -42,22 +38,18 @@ Level_3-JUnit/Exercise_1
 It adds a simple Maven configuration for compiling Java 1.8 code and running JUnit tests.
 
 3. Make the run_all_tests.sh Executable
-bash
-Copy code
+
 chmod +x run_all_tests.sh
 This command was used to make the run_all_tests.sh script executable, which automates running all the Maven tests across different directories.
 
 4. Run the run_all_tests.sh Script
-bash
-Copy code
+
 ./run_all_tests.sh
 This script loops through all the directories and runs mvn clean test in each one, ensuring that tests are executed and the directory is cleaned up before each run. The output will indicate whether the tests passed or failed in each directory.
 
 5. Example Maven Command for Running Tests Manually
 To run Maven tests manually in a specific directory (e.g., Level_1-JUnit/Exercise_1), you can use the following command:
 
-bash
-Copy code
 cd Level_1-JUnit/Exercise_1
 mvn test
 This command navigates to the specific directory and runs all the tests defined in that directory.
@@ -69,8 +61,6 @@ This script automatically creates pom.xml files for each exercise directory. Eac
 run_all_tests.sh
 This script automates the process of running tests for each exercise. It loops through all the exercise directories and runs the following Maven commands in each:
 
-bash
-Copy code
 mvn clean test
 This command cleans the directory, compiles the Java code, and runs all the tests.
 
