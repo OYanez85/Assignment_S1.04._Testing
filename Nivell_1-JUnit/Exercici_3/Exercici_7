@@ -1,0 +1,13 @@
+cat > ~/Tasca_S1.04_Testing/Nivell_2-AssertJ/Exercici_7/Exercise7.java <<EOL
+import org.assertj.core.api.Assertions;
+import java.util.Optional;
+
+public class Exercise7 {
+    public void testOptionalIsEmpty() {
+        Optional<String> optional = Optional.empty(); // Create an empty Optional
+
+        Assertions.assertThat(optional).isEmpty(); // Assert that it is indeed empty
+    }
+}
+EOL
+

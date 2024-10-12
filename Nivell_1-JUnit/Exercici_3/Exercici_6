@@ -1,0 +1,14 @@
+cat > ~/Tasca_S1.04_Testing/Nivell_2-AssertJ/Exercici_6/Exercise6.java <<EOL
+import org.assertj.core.api.Assertions;
+
+public class Exercise6 {
+    public void testArrayIndexOutOfBoundsException() {
+        int[] array = {1, 2, 3};
+
+        Assertions.assertThatThrownBy(() -> {
+            int value = array[5]; // This will throw ArrayIndexOutOfBoundsException
+        }).isInstanceOf(ArrayIndexOutOfBoundsException.class) // Assert that the exception is thrown
+          .hasMessageContaining("Index 5 out of bounds for length 3");
+    }
+}
+EOL

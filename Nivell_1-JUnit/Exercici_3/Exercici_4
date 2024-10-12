@@ -1,0 +1,26 @@
+cat > ~/Tasca_S1.04_Testing/Nivell_2-AssertJ/Exercici_4/Exercise4.java <<EOL
+import org.assertj.core.api.Assertions;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Exercise4 {
+    public void testArrayListOrder() {
+        List<Object> list = new ArrayList<>();
+        list.add("First");
+        list.add(2);
+        list.add(3.0);
+
+        Assertions.assertThat(list).containsExactly("First", 2, 3.0); // Assert order of objects as inserted
+
+        // Verify list contains objects in any order
+        Assertions.assertThat(list).contains("First", 2, 3.0);
+        
+        // Ensure one object is added only once
+        list.add("First");
+        Assertions.assertThat(list).hasSize(3); // Size should still be 3, as "First" is already there
+
+        // Verify the absence of a missing object
+        Assertions.assertThat(list).doesNotContain("NotInList");
+    }
+}
+EOL
