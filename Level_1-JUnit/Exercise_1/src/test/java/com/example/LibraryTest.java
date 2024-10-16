@@ -56,4 +56,12 @@ public class LibraryTest {
         });
         assertEquals("Invalid index: 5", exception.getMessage());
     }
+
+    // New test to ensure that adding a duplicate book at a specific position does not affect the list
+    @Test
+    public void testAddDuplicateBookAtPosition() {
+        library.addBookAtPosition(1, new Book("1984"));  // Try to add duplicate at a specific position
+        assertEquals(3, library.getBooks().size());  // Duplicate should not be added
+    }
 }
+
