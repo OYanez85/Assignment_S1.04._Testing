@@ -51,17 +51,37 @@ public class LibraryTest {
 
     @Test
     public void testOutOfBoundsIndex() {
-        Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+        Exception exception = assertThrows(LibraryOperationException.class, () -> {
             library.getBookAtPosition(5);
         });
         assertEquals("Invalid index: 5", exception.getMessage());
     }
 
-    // New test to ensure that adding a duplicate book at a specific position does not affect the list
     @Test
     public void testAddDuplicateBookAtPosition() {
         library.addBookAtPosition(1, new Book("1984"));  // Try to add duplicate at a specific position
         assertEquals(3, library.getBooks().size());  // Duplicate should not be added
     }
-}
 
+    // New Test: Test empty library
+    @Test
+    public void testEmptyLibrary() {
+        Library emptyLibrary = new Library();
+        assertEquals(0, emptyLibrary.getBooks().size());
+        assertThrows(LibraryOperationException.class, () -> emptyLibrary.getBookAtPosition(0));
+    }
+
+    // New Test: Test first position
+    @Test
+    public void testGetBookAtFirstPosition() {
+        Book firstBook = library.getBookAtPosition(0);  // First book should be "1984" (alphabetically)
+        assertEquals(new Book("1984"), firstBook);
+    }
+
+    // New Test: Test last position
+    @Test
+    public void testGetBookAtLastPosition() {
+        Book lastBook = library.getBookAtPosition(library.getBooks().size() - 1);  // Last book should be "The Hobbit"
+        assertEquals(new Book("The Hobbit"), lastBook);
+    }
+}
