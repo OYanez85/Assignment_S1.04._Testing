@@ -12,8 +12,12 @@ public class Library {
     }
 
     public void addBook(Book book) {
-        books.add(book);
-        Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
+        if (!books.contains(book)) {  // Prevent duplicates
+            books.add(book);
+            Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
+        } else {
+            System.out.println("Book already exists in the library.");
+        }
     }
 
     public List<Book> getBooks() {
@@ -21,12 +25,17 @@ public class Library {
     }
 
     public Book getBookAtPosition(int index) {
+        if (index < 0 || index >= books.size()) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
         return books.get(index);
     }
 
     public void addBookAtPosition(int index, Book book) {
-        books.add(index, book);
-        Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
+        if (!books.contains(book)) {  // Prevent duplicates
+            books.add(index, book);
+            Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
+        }
     }
 
     public void removeBookByTitle(String title) {
