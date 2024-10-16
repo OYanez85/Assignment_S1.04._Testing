@@ -21,7 +21,16 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Serialize the entire Library object
+        try {
+            String libraryJson = JsonSerializer.serialize(library);
+            System.out.println("Serialized Library: " + libraryJson);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
 
