@@ -11,13 +11,18 @@ public class Library {
         books = new ArrayList<>();
     }
 
-    public void addBook(Book book) {
-        if (!books.contains(book)) {  // Prevent duplicates
+    // Refactored repetitive code to helper method
+    private void addAndSortBooks(Book book) {
+        if (!books.contains(book)) {
             books.add(book);
             Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
         } else {
-            System.out.println("Book already exists in the library.");
+            System.out.println("Book \"" + book.getTitle() + "\" already exists in the library.");  // Informative message
         }
+    }
+
+    public void addBook(Book book) {
+        addAndSortBooks(book);
     }
 
     public List<Book> getBooks() {
@@ -26,16 +31,13 @@ public class Library {
 
     public Book getBookAtPosition(int index) {
         if (index < 0 || index >= books.size()) {
-            throw new IndexOutOfBoundsException("Invalid index: " + index);
+            throw new LibraryOperationException("Invalid index: " + index);  // Custom exception
         }
         return books.get(index);
     }
 
     public void addBookAtPosition(int index, Book book) {
-        if (!books.contains(book)) {  // Prevent duplicates
-            books.add(index, book);
-            Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
-        }
+        addAndSortBooks(book);
     }
 
     public void removeBookByTitle(String title) {
