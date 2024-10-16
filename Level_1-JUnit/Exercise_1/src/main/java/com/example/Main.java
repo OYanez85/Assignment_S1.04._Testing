@@ -11,6 +11,17 @@ public class Main {
         for (Book book : library.getBooks()) {
             System.out.println(book.getTitle());
         }
+
+        // Test JSON serialization for a Book object
+        Book book = new Book("The Hobbit");
+        try {
+            // Serialize the Book object
+            String json = JsonSerializer.serialize(book);
+            System.out.println("Serialized Book: " + json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
