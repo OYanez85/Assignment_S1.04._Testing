@@ -2,7 +2,6 @@ package com.example;
 
 import java.util.Objects;
 
-@SerialiseJSON  // Custom annotation for JSON serialization
 public class Book {
     private String title;
 
@@ -25,10 +24,5 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(title);
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" + "title='" + title + '\'' + '}';
     }
 }

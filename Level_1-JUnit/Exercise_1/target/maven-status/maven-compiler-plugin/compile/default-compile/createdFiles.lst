@@ -1,3 +1,6 @@
-com/example/Book.class
+com/example/SerialiseJSON.class
+com/example/LibraryOperationException.class
 com/example/Library.class
 com/example/Main.class
+com/example/JsonSerializer.class
+com/example/Book.class

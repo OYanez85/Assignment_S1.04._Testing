@@ -5,42 +5,50 @@ import java.util.Collections;
 import java.util.List;
 
 public class Library {
+
     private List<Book> books;
 
     public Library() {
-        books = new ArrayList<>();
+        this.books = new ArrayList<>();
     }
 
-    // Refactored repetitive code to helper method
-    private void addAndSortBooks(Book book) {
+    // Add a book to the collection
+    public void addBook(Book book) {
         if (!books.contains(book)) {
             books.add(book);
-            Collections.sort(books, (a, b) -> a.getTitle().compareTo(b.getTitle()));
-        } else {
-            System.out.println("Book \"" + book.getTitle() + "\" already exists in the library.");  // Informative message
+            sortBooks();  // Ensure books remain sorted
         }
     }
 
-    public void addBook(Book book) {
-        addAndSortBooks(book);
-    }
-
+    // Get the list of all books
     public List<Book> getBooks() {
         return books;
     }
 
+    // Get a book at a specific position, throwing exception if out of bounds
     public Book getBookAtPosition(int index) {
         if (index < 0 || index >= books.size()) {
-            throw new LibraryOperationException("Invalid index: " + index);  // Custom exception
+            throw new IndexOutOfBoundsException("Book position out of bounds.");
         }
         return books.get(index);
     }
 
+    // Add a book at a specific position
     public void addBookAtPosition(int index, Book book) {
-        addAndSortBooks(book);
+        if (index < 0 || index > books.size()) {
+            throw new IndexOutOfBoundsException("Cannot add book at this position.");
+        }
+        books.add(index, book);
+        sortBooks();  // Keep books sorted alphabetically
     }
 
-    public void removeBookByTitle(String title) {
+    // Remove a book by its title
+    public void removeBook(String title) {
         books.removeIf(book -> book.getTitle().equals(title));
+    }
+
+    // Sort books alphabetically by title
+    public void sortBooks() {
+        Collections.sort(books, (b1, b2) -> b1.getTitle().compareTo(b2.getTitle()));
     }
 }

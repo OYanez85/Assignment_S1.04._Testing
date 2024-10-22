@@ -3,34 +3,32 @@ package com.example;
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        library.addBook(new Book("The Hobbit"));
-        library.addBook(new Book("1984"));
-        library.addBook(new Book("Harry Potter"));
 
-        System.out.println("Library contains:");
+        // Add books to the library
+        library.addBook(new Book("Effective Java"));
+        library.addBook(new Book("Animal Farm"));
+        library.addBook(new Book("Brave New World"));
+
+        // Print all books
         for (Book book : library.getBooks()) {
             System.out.println(book.getTitle());
         }
 
-        // Test JSON serialization for a Book object
-        Book book = new Book("The Hobbit");
+        // Example of getting a book at a specific position
         try {
-            // Serialize the Book object
-            String json = JsonSerializer.serialize(book);
-            System.out.println("Serialized Book: " + json);
-        } catch (Exception e) {
-            e.printStackTrace();
+            Book bookAtPosition = library.getBookAtPosition(0);
+            System.out.println("Book at position 0: " + bookAtPosition.getTitle());
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
         }
 
-        // Serialize the entire Library object
-        try {
-            String libraryJson = JsonSerializer.serialize(library);
-            System.out.println("Serialized Library: " + libraryJson);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Example of removing a book
+        library.removeBook("Animal Farm");
+        System.out.println("Removed 'Animal Farm'");
+
+        // Print all books again after removing a book
+        for (Book book : library.getBooks()) {
+            System.out.println(book.getTitle());
         }
     }
 }
-
-
-
